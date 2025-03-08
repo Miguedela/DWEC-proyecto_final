@@ -1,1 +1,14 @@
-<p>lista-planetas works!</p>
+<div class="container">
+    <h2>Lista de Planetas</h2>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let planeta of planetas">
+            <div class="card mb-4">
+                <img [src]="planeta.imageUrl" class="card-img-top" alt="{{ planeta.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ planeta.name }}</h5>
+                    <p class="card-text">{{ planeta.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

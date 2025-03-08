@@ -1,1 +1,4 @@
-<p>barra-busqueda works!</p>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Buscar..." [(ngModel)]="query">
+    <button class="btn btn-primary" type="button" (click)="buscar()">Buscar</button>
+</div>

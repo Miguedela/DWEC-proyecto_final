@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DragonBallService } from '../dragon-ball.service';
 
 @Component({
   selector: 'app-lista-planetas',
@@ -6,6 +7,14 @@ import { Component } from '@angular/core';
   templateUrl: './lista-planetas.component.html',
   styleUrl: './lista-planetas.component.css'
 })
-export class ListaPlanetasComponent {
+export class ListaPlanetasComponent implements OnInit {
+  planetas: any[] = [];
 
+  constructor(private dragonBallService: DragonBallService) { }
+
+  ngOnInit(): void {
+    this.dragonBallService.getPlanetas().subscribe(data => {
+      this.planetas = data;
+    });
+  }
 }
