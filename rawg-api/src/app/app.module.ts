@@ -11,6 +11,7 @@ import { BusquedaPlataformaComponent } from './busqueda-plataforma/busqueda-plat
 import { HomeComponent } from './home/home.component';
 import { Pagina404Component } from './pagina404/pagina404.component';
 import { AcercaDeComponent } from './acerca-de/acerca-de.component';
+import { FormatearFechaPipe } from './formatear-fecha.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AcercaDeComponent } from './acerca-de/acerca-de.component';
     BusquedaPlataformaComponent,
     HomeComponent,
     Pagina404Component,
-    AcercaDeComponent
+    AcercaDeComponent,
+    FormatearFechaPipe
   ],
   imports: [
     BrowserModule,
