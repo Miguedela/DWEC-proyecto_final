@@ -1,7 +1,8 @@
 // filepath: /home/git/DWEC-proyecto_final/rawg-api/src/app/rawg-api.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { Ijuegos } from './ijuegos';
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +13,60 @@ export class RawgApiService {
 
   constructor(private http: HttpClient) { }
 
-  busquedaNombre(query: string, ordering: string = '-rating', page: number = 1): Observable<any> {
-    let params = new HttpParams().set('key', this.apiKey).set('search', query).set('ordering', ordering).set('page', page.toString());
-    return this.http.get<any>(this.apiUrl, { params });
+  busquedaNombre(nombre: string, orden: string, pagina: number = 1): Observable<Ijuegos> {
+    const params = new HttpParams()
+      .set('key', this.apiKey)
+      .set('search', nombre)
+      .set('ordering', orden)
+      .set('page', pagina.toString());
+
+    return this.http.get<any>(this.apiUrl, { params }).pipe(
+      map(respuesta => ({
+        juegos: respuesta.results.map((juego: any) => ({
+          nombre: juego.name,
+          valoracion: juego.rating,
+          fechaLanzamiento: juego.released,
+          imagen: juego.background_image
+        })),
+        posterior: respuesta.next,
+        anterior: respuesta.previous
+      }))
+    );
   }
 
-  busquedaPlataforma(query: string, ordering: string = '-rating', page: number = 1): Observable<any> {
-    let params = new HttpParams().set('key', this.apiKey).set('platforms', query).set('ordering', ordering).set('page', page.toString());
-    return this.http.get<any>(this.apiUrl, { params });
+  busquedaPlataforma(plataforma: string, orden: string, pagina: number): Observable<Ijuegos> {
+    const params = new HttpParams()
+      .set('key', this.apiKey)
+      .set('platforms', plataforma)
+      .set('ordering', orden)
+      .set('page', pagina.toString());
+
+    return this.http.get<any>(this.apiUrl, { params }).pipe(
+      map(respuesta => ({
+        juegos: respuesta.results.map((juego: any) => ({
+          nombre: juego.name,
+          valoracion: juego.rating,
+          fechaLanzamiento: juego.released,
+          imagen: juego.background_image
+        })),
+        posterior: respuesta.next,
+        anterior: respuesta.previous
+      }))
+    );
   }
 
-  getGamesByUrl(url: string): Observable<any> {
-    return this.http.get<any>(url);
+  getGamesByUrl(url: string): Observable<Ijuegos> {
+    return this.http.get<any>(url).pipe(
+      map(respuesta => ({
+        juegos: respuesta.results.map((juego: any) => ({
+          nombre: juego.name,
+          valoracion: juego.rating,
+          fechaLanzamiento: juego.released,
+          imagen: juego.background_image
+        })),
+        posterior: respuesta.next,
+        anterior: respuesta.previous
+      }))
+    );
   }
 }

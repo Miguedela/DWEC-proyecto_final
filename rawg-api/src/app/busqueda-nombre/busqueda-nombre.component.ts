@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RawgApiService } from '../rwag-api.service';
+import { Ijuegos } from '../ijuegos';
 
 @Component({
   selector: 'app-busqueda-plataforma',
@@ -10,41 +11,37 @@ import { RawgApiService } from '../rwag-api.service';
 export class BusquedaNombreComponent {
   title = 'Búsqueda por nombre';
   buscador: string = '';
-  juegos: any[] = [];
+  juegos: Ijuegos = { juegos: [], posterior: null, anterior: null };
   orden: string = '-rating';
-  nextPage: string | null = null;
-  prevPage: string | null = null;
+  paginaActual: number = 1;
 
   constructor(private rawgApiService: RawgApiService) { }
 
   busquedaNombre() {
-    if (this.buscador) {
-      this.rawgApiService.busquedaNombre(this.buscador, this.orden).subscribe(response => {
-        this.juegos = response.results;
-      });
-    }
+    this.rawgApiService.busquedaNombre(this.buscador, this.orden, this.paginaActual).subscribe((response: Ijuegos) => {
+      this.juegos = response;
+    });
   }
 
   ordenarJuegos() {
+    this.paginaActual = 1;
     this.busquedaNombre();
   }
 
   getNextPage() {
-    if (this.nextPage) {
-      this.rawgApiService.getGamesByUrl(this.nextPage).subscribe(response => {
-        this.juegos = response.results;
-        this.nextPage = response.next;
-        this.prevPage = response.previous;
+    if (this.juegos.posterior) {
+      this.paginaActual++;
+      this.rawgApiService.getGamesByUrl(this.juegos.posterior).subscribe(response => {
+        this.juegos = response;
       });
     }
   }
 
   getPrevPage() {
-    if (this.prevPage) {
-      this.rawgApiService.getGamesByUrl(this.prevPage).subscribe(response => {
-        this.juegos = response.results;
-        this.nextPage = response.next;
-        this.prevPage = response.previous;
+    if (this.juegos.anterior) {
+      this.paginaActual--;
+      this.rawgApiService.getGamesByUrl(this.juegos.anterior).subscribe(response => {
+        this.juegos = response;
       });
     }
   }

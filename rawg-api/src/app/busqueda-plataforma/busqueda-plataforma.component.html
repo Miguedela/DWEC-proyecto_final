@@ -19,7 +19,7 @@
             <button type="submit" class="btn btn-primary col-1">Buscar</button>
         </div>
     </form>
-    <div *ngIf="juegos.length > 0" class="mt-4">
+    <div *ngIf="juegos.juegos.length > 0" class="mt-4">
         <div class="row">
             <h2 class="col-md-8">Resultados:</h2>
             <div class="form-group col-md-4">
@@ -34,25 +34,28 @@
             </div>
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col" *ngFor="let juego of juegos">
-                <div *ngIf="juego.background_image != null && juego.background_image != ''" class="mt-4">
+            <div class="col" *ngFor="let juego of juegos.juegos">
+                <div *ngIf="juego.imagen != null && juego.imagen != ''" class="mt-4">
                     <div class="card h-100">
-                        <img [src]="juego.background_image" class="card-img-top" alt="{{ juego.name }}">
+                        <img [src]="juego.imagen" class="card-img-top" alt="{{ juego.nombre }}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ juego.name }}</h5>
+                            <h5 class="card-title">{{ juego.nombre }}</h5>
                             <p class="card-text">
                                 Rating:
-                                ({{ juego.rating }})
+                                ({{ juego.valoracion }})
                             </p>
-                            <p class="card-text">Released: {{ juego.released }}</p>
+                            <p class="card-text">Released: {{ juego.fechaLanzamiento }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="d-flex justify-content-around mt-4 w-25 mx-auto">
-            <button class="btn btn-primary" (click)="getPrevPage()" [disabled]="!prevPage">Anterior</button>
-            <button class="btn btn-primary" (click)="getNextPage()" [disabled]="!nextPage">Siguiente</button>
+            <button class="btn btn-primary" (click)="getPrevPage()" [disabled]="!juegos.anterior">Anterior</button>
+            <button class="btn btn-primary" (click)="getNextPage()" [disabled]="!juegos.posterior">Siguiente</button>
         </div>
+    </div>
+    <div *ngIf="juegos.juegos.length > 0" class="mt-4">
+        <h1 class="text-center">Juego no encontrado</h1>
     </div>
 </div>
