@@ -1,4 +1,3 @@
-// filepath: /home/git/DWEC-proyecto_final/rawg-api/src/app/rawg-api.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
