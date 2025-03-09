@@ -1,18 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
+import { RawgApiService } from './rwag-api.service';
+import { BusquedaNombreComponent } from './busqueda-nombre/busqueda-nombre.component';
+import { BusquedaPlataformaComponent } from './busqueda-plataforma/busqueda-plataforma.component';
+import { HomeComponent } from './home/home.component';
+import { Pagina404Component } from './pagina404/pagina404.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BusquedaNombreComponent,
+    BusquedaPlataformaComponent,
+    HomeComponent,
+    Pagina404Component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [RawgApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

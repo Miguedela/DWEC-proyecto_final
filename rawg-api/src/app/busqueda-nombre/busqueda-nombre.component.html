@@ -1,0 +1,48 @@
+<div class="container-md">
+    <h1>{{title}}</h1>
+    <form (submit)="busquedaNombre()">
+        <div class="row">
+            <div class="form-group col">
+                <input type="text" class="form-control" [(ngModel)]="buscador" name="searchQuery"
+                    placeholder="Introduce el nombre del juego">
+            </div>
+            <button type="submit" class="btn btn-primary col-1">Buscar</button>
+        </div>
+    </form>
+    <div *ngIf="juegos.length > 0" class="mt-4">
+        <div class="row">
+            <h2 class="col-md-8">Resultados:</h2>
+            <div class="form-group col-md-4">
+                <select class="form-select" [(ngModel)]="orden" (change)="ordenarJuegos()">
+                    <option selected value="-rating">Valoración (Descendente)</option>
+                    <option value="rating">Valoración (Ascendente)</option>
+                    <option value="name">Nombre (A-Z)</option>
+                    <option value="-name">Nombre (Z-A)</option>
+                    <option value="released">Fecha de lanzamiento (Ascendente)</option>
+                    <option value="-released">Fecha de lanzamiento (Descendente)</option>
+                </select>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col" *ngFor="let juego of juegos">
+                <div *ngIf="juego.background_image != null && juego.background_image != ''" class="mt-4">
+                    <div class="card h-100">
+                        <img [src]="juego.background_image" class="card-img-top" alt="{{ juego.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ juego.name }}</h5>
+                            <p class="card-text">
+                                Rating:
+                                ({{ juego.rating }})
+                            </p>
+                            <p class="card-text">Released: {{ juego.released }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-around mt-4 w-25 mx-auto">
+            <button class="btn btn-primary" (click)="getPrevPage()" [disabled]="!prevPage">Anterior</button>
+            <button class="btn btn-primary" (click)="getNextPage()" [disabled]="!nextPage">Siguiente</button>
+        </div>
+    </div>
+</div>
