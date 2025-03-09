@@ -10,6 +10,7 @@ import { BusquedaNombreComponent } from './busqueda-nombre/busqueda-nombre.compo
 import { BusquedaPlataformaComponent } from './busqueda-plataforma/busqueda-plataforma.component';
 import { HomeComponent } from './home/home.component';
 import { Pagina404Component } from './pagina404/pagina404.component';
+import { AcercaDeComponent } from './acerca-de/acerca-de.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { Pagina404Component } from './pagina404/pagina404.component';
     BusquedaNombreComponent,
     BusquedaPlataformaComponent,
     HomeComponent,
-    Pagina404Component
+    Pagina404Component,
+    AcercaDeComponent
   ],
   imports: [
     BrowserModule,

@@ -4,12 +4,14 @@ import { BusquedaNombreComponent } from './busqueda-nombre/busqueda-nombre.compo
 import { BusquedaPlataformaComponent } from './busqueda-plataforma/busqueda-plataforma.component';
 import { HomeComponent } from './home/home.component';
 import { Pagina404Component } from './pagina404/pagina404.component';
+import { AcercaDeComponent } from './acerca-de/acerca-de.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'nombre', component: BusquedaNombreComponent },
   { path: 'plataforma', component: BusquedaPlataformaComponent },
+  { path: 'acercade', component: AcercaDeComponent },
   { path: '**', component: Pagina404Component }
 ]
 
