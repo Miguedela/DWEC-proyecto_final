@@ -44,9 +44,6 @@ export class ActualizarProductoComponent {
       response => {
         console.log('Artículo actualizado:', response);
         this.redirigir();
-      },
-      error => {
-        console.error("Error al actualizar el producto", error);
       }
     );
   }

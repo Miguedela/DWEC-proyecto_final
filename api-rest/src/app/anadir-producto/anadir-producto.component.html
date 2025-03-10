@@ -1,9 +1,9 @@
 <form (submit)="anadirProducto()">
     <div class="container">
         <div class="form-group col">
-            <input type="text" class="form-control" [(ngModel)]="descripcion" name="searchQuery"
+            <input type="text" class="form-control mb-4" [(ngModel)]="descripcion" name="searchQuery"
                 placeholder="Introduce la descripcion del producto">
-            <input type="number" class="form-control" [(ngModel)]="precio" name="searchQuery"
+            <input type="number" class="form-control mb-4" [(ngModel)]="precio" name="searchQuery"
                 placeholder="Introduce el precio del producto">
         </div>
         <button type="submit" class="btn btn-primary col-1">Añadir</button>

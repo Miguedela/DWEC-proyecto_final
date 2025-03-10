@@ -25,7 +25,7 @@ export class EliminarProductoComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.apirestservice.eliminarProducto(this.id).subscribe(() => {
-        // console.log(`Producto con ID ${this.id} eliminado`);
+        console.log(`Producto con ID ${this.id} eliminado`);
         this.redirigir();
       });
     });
