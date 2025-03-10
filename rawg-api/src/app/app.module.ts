@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { RawgApiService } from './rwag-api.service';
 import { BusquedaNombreComponent } from './busqueda-nombre/busqueda-nombre.component';
 import { BusquedaPlataformaComponent } from './busqueda-plataforma/busqueda-plataforma.component';
 import { HomeComponent } from './home/home.component';
@@ -26,10 +25,9 @@ import { FormatearFechaPipe } from './formatear-fecha.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    HttpClientModule
+    FormsModule
   ],
-  providers: [RawgApiService],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
