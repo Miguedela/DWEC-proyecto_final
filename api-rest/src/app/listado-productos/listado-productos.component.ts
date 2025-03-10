@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiRestService } from '../api-rest.service';
+import { Iproducto } from '../iproducto';
 
 @Component({
   selector: 'app-listado-productos',
@@ -8,15 +9,13 @@ import { ApiRestService } from '../api-rest.service';
   styleUrl: './listado-productos.component.css'
 })
 export class ListadoProductosComponent {
-  productos!: any[];
+  productos: Iproducto[] = [];
 
   constructor(private apirestservice: ApiRestService) { }
 
   ngOnInit(): void {
-    this.apirestservice.devolverProductos().subscribe(
-      (data) => {
-        this.productos = data;
-      }
+    this.apirestservice.devolverProductos().subscribe(data =>
+      this.productos = data
     );
   }
 }

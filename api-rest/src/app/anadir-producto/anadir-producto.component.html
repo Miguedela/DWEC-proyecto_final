@@ -1,1 +1,11 @@
-<p>anadir-producto works!</p>
+<form (submit)="anadirProducto()">
+    <div class="container">
+        <div class="form-group col">
+            <input type="text" class="form-control" [(ngModel)]="descripcion" name="searchQuery"
+                placeholder="Introduce la descripcion del producto">
+            <input type="number" class="form-control" [(ngModel)]="precio" name="searchQuery"
+                placeholder="Introduce el precio del producto">
+        </div>
+        <button type="submit" class="btn btn-primary col-1">Añadir</button>
+    </div>
+</form>

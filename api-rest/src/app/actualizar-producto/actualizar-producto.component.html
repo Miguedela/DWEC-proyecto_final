@@ -1,1 +1,21 @@
-<p>actualizar-producto works!</p>
+<div *ngIf="producto" style="display: flex; justify-content: center;">
+    <form (ngSubmit)="modificarProducto()"
+        style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; width: 300px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <!-- Input para descripción -->
+        <label for="descripcion">Descripción:</label>
+        <input id="descripcion" type="text" [(ngModel)]="producto.descripcion" name="descripcion"
+            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+
+        <!-- Mostrar ID del producto -->
+        <p>ID: {{ producto.id }}</p>
+
+        <!-- Input para precio -->
+        <label for="precio">Precio:</label>
+        <input id="precio" type="number" [(ngModel)]="producto.precio" name="precio"
+            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+
+        <!-- Boton -->
+        <button type="submit"
+            style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">Guardar</button>
+    </form>
+</div>
